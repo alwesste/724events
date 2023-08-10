@@ -11,27 +11,29 @@ const PER_PAGE = 9;
 
 const EventList = () => {
   const { data, error } = useData();
-  const [type, setType] = useState();
+  const [type, setType] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+
   const filteredEvents = (
     (!type
       ? data?.events
-      : data?.events) || []
+      : data?.events.filter((event) => event.type === type)) || []
   ).filter((event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
+    if ((currentPage - 1) * PER_PAGE <= index && PER_PAGE * currentPage > index) {
       return true;
     }
     return false;
   });
+  
+  console.log('filterEvents', filteredEvents)
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
   };
+  console.log('changeType', changeType)
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
+  console.log('typeList', typeList)
   return (
     <>
       {error && <div>An error occured</div>}
@@ -47,7 +49,9 @@ const EventList = () => {
           <div id="events" className="ListContainer">
             {filteredEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
-                {({ setIsOpened }) => (
+                {({ setIsOpened }) => {
+              console.log('le dernier event', event) 
+              return (
                   <EventCard
                     onClick={() => setIsOpened(true)}
                     imageSrc={event.cover}
@@ -55,7 +59,7 @@ const EventList = () => {
                     date={new Date(event.date)}
                     label={event.type}
                   />
-                )}
+                )}}
               </Modal>
             ))}
           </div>

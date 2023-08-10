@@ -15,7 +15,7 @@
       opacity: 0;
     }
     &--display {
-      animation: slide 1s forwards;
+      animation: slide 1s both;
     }
     &__descriptionContainer {
       position: absolute;
