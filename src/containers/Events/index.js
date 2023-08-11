@@ -18,7 +18,7 @@ const EventList = () => {
     (!type
       ? data?.events
       : data?.events.filter((event) => event.type === type)) || []
-  ).filter((event, index) => {
+  ).filter((_, index) => {
     if ((currentPage - 1) * PER_PAGE <= index && PER_PAGE * currentPage > index) {
       return true;
     }
@@ -30,10 +30,11 @@ const EventList = () => {
     setCurrentPage(1);
     setType(evtType);
   };
-  console.log('changeType', changeType)
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
-  console.log('typeList', typeList)
+
+  console.log('type', type)
+
   return (
     <>
       {error && <div>An error occured</div>}
@@ -49,9 +50,8 @@ const EventList = () => {
           <div id="events" className="ListContainer">
             {filteredEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
-                {({ setIsOpened }) => {
-              console.log('le dernier event', event) 
-              return (
+                {({ setIsOpened }) => 
+               (
                   <EventCard
                     onClick={() => setIsOpened(true)}
                     imageSrc={event.cover}
@@ -59,7 +59,7 @@ const EventList = () => {
                     date={new Date(event.date)}
                     label={event.type}
                   />
-                )}}
+                )}
               </Modal>
             ))}
           </div>

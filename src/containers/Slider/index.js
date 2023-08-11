@@ -9,6 +9,8 @@ const Slider = () => {
   const [index, setIndex] = useState(0);
   const [byDateDesc, setByDateDesc] = useState([]);
   
+  // console.log("data", data)
+  
   useEffect(() => {
     if (data && data.focus) {
       const sortedData = data.focus.sort((evtA, evtB) =>
