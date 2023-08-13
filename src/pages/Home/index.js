@@ -14,7 +14,6 @@ import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
   const {data} = useData()
-  // const last = data.pop()
   const last = data?.events.pop()
   return <>
     <header>
