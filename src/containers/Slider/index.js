@@ -25,7 +25,6 @@ const Slider = () => {
     5000
     );
   };
-  console.log('byDateDescIndex', index)
   useEffect(() => {
     nextCard();
   });
@@ -52,7 +51,7 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) =>(
                   <input
-                    key={`${event.id}`} // Utilisez radioIdx comme clé ici
+                    key={event.radioIdx}
                     type="radio"
                     name="radio-button"
                     checked={index === radioIdx}
