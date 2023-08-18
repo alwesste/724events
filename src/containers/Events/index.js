@@ -25,7 +25,6 @@ const EventList = () => {
     return false;
   });
   
-  console.log('filterEvents', filteredEvents)
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
@@ -33,7 +32,6 @@ const EventList = () => {
   const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
   const typeList = new Set(data?.events.map((event) => event.type));
 
-  console.log('typeList', typeList)
 
   return (
     <>

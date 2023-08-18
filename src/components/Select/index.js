@@ -19,7 +19,6 @@ const Select = ({
     onChange(newValue);
     setValue(newValue);
     setCollapsed(!collapsed);
-    console.log('newValue', newValue)
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
@@ -58,7 +57,6 @@ const Select = ({
           onClick={(e) => {
             e.preventDefault();
             setCollapsed(!collapsed);
-            console.log('ca clic dans le select')
           }}
         >
           <Arrow />
